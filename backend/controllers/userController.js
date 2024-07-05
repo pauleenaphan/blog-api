@@ -8,22 +8,22 @@ exports.signup = async (req, res) => {
     const { username, email, password } = req.body;
 
     try {
-    // Check if the user already exists
-    const existingUser = await User.findOne({ username });
-    if (existingUser) {
-        return res.status(400).send('User already exists');
-    }
+        // Check if the user already exists
+        const existingUser = await User.findOne({ username });
+        if (existingUser) {
+            return res.status(400).send('User already exists');
+        }
 
-    // Hash the password
-    const hashedPassword = await bcrypt.hash(password, 10);
+        // Hash the password
+        const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Create a new user
-    const newUser = new User({ username, email, password: hashedPassword, role: "user" });
-    await newUser.save();
+        // Create a new user
+        const newUser = new User({ username, email, password: hashedPassword, role: "user" });
+        await newUser.save();
 
         res.status(201).send('User registered');
     } catch (error) {
-        res.status(500).send('Server error');
+        res.status(500).send(error);
     }
 };
 
@@ -43,8 +43,7 @@ exports.login = async (req, res) => {
     // Create a JWT token
     const payload = { id: user._id, email: user.email, username: user.username, role: user.role };
     const token = jwt.sign(payload, process.env.SECRET_KEY, { expiresIn: '10h' });
-
-    res.json({ token });
+    res.json({ token, role: user.role });
     } catch (error) {
         res.status(500).send('Server error');
     }
