@@ -54,41 +54,53 @@ export const CreateAccount = () =>{
     return(
         <div>
             <Navbar/>
-            <h1> Signup </h1>
-            <form className="loginForm" onSubmit={handleSubmit}>
-                <label> Email: </label>
-                <input 
-                    type="text" 
-                    placeholder="Email"
-                    onChange={(e) => updateUserData('email', e.target.value)}
-                    required={true}
-                ></input>
-                <label> Username: </label>
-                <input 
-                    type="text" 
-                    placeholder="Name"
-                    onChange={(e) => updateUserData('username', e.target.value)}
-                    required={true}
-                    ></input>
-                <label> Password: </label>
-                <input 
-                    type="password" 
-                    placeholder="Password"
-                    onChange={(e) => updateUserData('password', e.target.value)}
-                    required={true}
-                    ></input>
-                <label> Confirm Password: </label>
-                <input 
-                    type="password" 
-                    placeholder="confirm password"
-                    onChange={(e) => updateUserData('confirmPass', e.target.value)}
-                    required={true}
-                    ></input>
-                <button type="submit"> Signup </button>
-            </form>
-            <p> {signupStatus} </p>
-            <p> Existing User? </p>
-            <button onClick={() => navigate("/login")}> Login </button>
+            <div className="signupPage">
+                <h1> Signup </h1>
+                <form className="signupForm" onSubmit={handleSubmit}>
+                    <div className="inputContainer">
+                        <label> Email: </label>
+                        <input 
+                            type="text" 
+                            placeholder="Email"
+                            onChange={(e) => updateUserData('email', e.target.value)}
+                            required={true}
+                        ></input>
+                    </div>
+                    <div className="inputContainer">
+                        <label> Username: </label>
+                        <input 
+                            type="text" 
+                            placeholder="Name"
+                            onChange={(e) => updateUserData('username', e.target.value)}
+                            required={true}
+                        ></input>
+                    </div>
+                    <div className="inputContainer">
+                        <label> Password: </label>
+                        <input 
+                            type="password" 
+                            placeholder="Password"
+                            onChange={(e) => updateUserData('password', e.target.value)}
+                            required={true}
+                        ></input>
+                    </div>
+                    <div className="inputContainer">
+                        <label> Confirm Password: </label>
+                        <input 
+                            type="password" 
+                            placeholder="Confirm Password"
+                            onChange={(e) => updateUserData('confirmPass', e.target.value)}
+                            required={true}
+                        ></input>
+                    </div>
+                    <button type="submit"> Signup </button>
+                </form>
+                <p className="statusmsg"> {signupStatus} </p>
+                <div className="captionContainer">
+                    <p> Already have an account? </p>
+                    <button onClick={() => navigate("/login")}> Login </button>
+                </div>
+            </div>
         </div>
     )
 }

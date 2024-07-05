@@ -1,0 +1,78 @@
+.loginPage, .signupPage{
+    align-items: center;
+    border-radius: 10px;
+    border: solid 2px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 50px auto;
+    padding: 50px 100px;
+    width: 20%;
+}
+
+.loginForm, .signupForm{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px 0px;
+    width: 90%;
+
+}
+
+.inputContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 150%;
+}
+
+.inputContainer label{
+    font-size: 20px;
+}
+
+.inputContainer input{
+    background-color: rgb(233, 248, 255);
+    border-radius: 10px;
+    font-size: 18px;
+    padding: 10px;
+}
+
+.loginForm button, .signupForm button{
+    background-color: rgb(255, 212, 219);
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 15px 0px;
+    padding: 10px;
+    width: 40%;
+}
+
+.loginForm button:hover, .signupForm button:hover{
+    background-color: rgb(199, 166, 172); 
+}
+
+.captionContainer{
+    align-items: center;
+    display: flex;
+    font-size: 20px;
+    gap: 5px;
+}
+
+.captionContainer button{
+    background-color: white;
+    border: none;
+    color: rgb(158, 0, 103);
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.captionContainer button:hover{
+    color: rgb(96, 1, 63);
+}
+
+.statusmsg{
+    color: red;
+    font-size: 18px;
+}

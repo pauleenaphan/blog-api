@@ -110,7 +110,7 @@ export const BlogPost = () =>{
     return(
         <div>
             <Navbar/>
-            <div className="postContainer">
+            <div className="blogPostContainer">
                 <h1> {post.title} </h1>
                 <p> Published: {post.published} </p>
                 <p> By: {post.author} </p>

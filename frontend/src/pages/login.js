@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Navbar } from "../components/nav";
 
+import "../styles/login.css";
+
 export const Login = () =>{
     const navigate = useNavigate(); 
     const [userData, setUserData] = useState({
@@ -49,26 +51,36 @@ export const Login = () =>{
     return(
         <div>
             <Navbar/>
-            <h1> Login </h1>
-            <form className="loginForm" onSubmit={handleSubmit}>
-                <label> Email: </label>
-                <input 
-                    type="text" 
-                    placeholder="Email"
-                    onChange={(e) => updateUserData('email', e.target.value)}
-                    required={true}
-                    ></input>
-                <label> Password: </label>
-                <input 
-                    type="password" 
-                    placeholder="Password"
-                    onChange={(e) => updateUserData('password', e.target.value)}
-                    ></input>
-                <button type="submit"> Login </button>
-            </form>
-            <p> {loginStatus} </p>
-            <p> Don't have an account?</p>
-            <button onClick={()=> navigate("/signup")}> Sign up </button>
+            <div className="loginPage">
+                <h1> Login </h1>
+                <form className="loginForm" onSubmit={handleSubmit}>
+                    <div className="inputContainer">
+                        <label> Email: </label>
+                        <input 
+                            type="text" 
+                            placeholder="Email"
+                            onChange={(e) => updateUserData('email', e.target.value)}
+                            required={true}
+                        ></input>
+                    </div>
+                    <div className="inputContainer">
+                        <label> Password: </label>
+                        <input 
+                            type="password" 
+                            placeholder="Password"
+                            onChange={(e) => updateUserData('password', e.target.value)}
+                        ></input>
+                    </div>
+                    
+                    <button type="submit"> Login </button>
+                </form>
+                <p className="statusmsg"> {loginStatus} </p>
+                <div className="captionContainer">
+                    <p> Don't have an account?</p>
+                    <button onClick={()=> navigate("/signup")}> Sign up </button>
+                </div>
+            </div>
+            
         </div>
     )
 }

@@ -6,6 +6,8 @@ import { CreateAccount } from './pages/signup';
 import { Homepage } from './pages/home';
 import { BlogPost } from './pages/blogPost';
 
+import "./styles/global.css"
+
 function App() {
 
   return (

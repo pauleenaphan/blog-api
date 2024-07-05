@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import Modal from "../components/modal";
 import { Navbar } from "../components/nav";
+import "../styles/home.css";
 
 //show all blogs
 export const Homepage = () =>{
@@ -96,7 +97,7 @@ export const Homepage = () =>{
         <div>
             <Navbar/>
             {userRole === "admin" && (
-                <button onClick={() => setPostModal(true)}> New Post </button>
+                <button className="newPostBtn" onClick={() => setPostModal(true)}> New Post </button>
             )}
             <Modal show={postModal} onClose={() => setPostModal(false)}>
                 <h2> New Post </h2>
@@ -131,20 +132,29 @@ export const Homepage = () =>{
                 </form>
             </Modal>
 
-            {posts.map(post =>(
-                <div key={post._id} onClick={() => navigate(`/blogPost/${post._id}`)}>
-                    <h3> {post.title} </h3>
-                    <p> {post.description} </p>
-                    <p> {post.readTime} min read </p>
-                    <p> Published: {post.published} </p>
-                    {userRole === 'admin' && (
-                        <button onClick={(e) => {
-                            e.stopPropagation(); 
-                            removePost(post._id)
-                        }}> Remove Post </button>
-                    )}
-                </div>
-            ))}
+            <div className="postContainer">
+                {posts.map(post =>(
+                    <div key={post._id} onClick={() => navigate(`/blogPost/${post._id}`)} className="post">
+                        <h3> {post.title} </h3>
+                        <p> {post.description} </p>
+                        <div className="postCaption">
+                            <p className="postReadTime"> {post.readTime} min read </p>
+                            <p> Published: {post.published} </p>
+                        </div>
+                        {userRole === 'admin' && (
+                            <div className="postBtnContainer">
+                                <button className="removePostBtn" onClick={(e) => {
+                                    e.stopPropagation(); 
+                                    removePost(post._id)
+                                }}> Remove Post </button>
+                                <button className="editPostBtn"> Edit Post </button>
+                            </div>
+                            
+                        )}
+                    </div>
+                ))}
+            </div>
+            
         </div>
     )
 }
