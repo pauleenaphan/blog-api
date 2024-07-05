@@ -10,6 +10,6 @@ router.post('/addcomment/:id', authenticateJWT, commentController.addComment);
 router.get('/viewcomments/:postId', commentController.viewComments);
 
 //deletes a comment
-router.delete('/deletecomment/:id', authenticateJWT, commentController.deleteComments);
+router.delete('/deletecomment/:id', authenticateJWT, checkAdmin, commentController.deleteComments);
 
 module.exports = router;
