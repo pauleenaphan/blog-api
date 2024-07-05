@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Navbar } from "../components/nav";
 
 export const Login = () =>{
     const navigate = useNavigate(); 
@@ -34,8 +35,9 @@ export const Login = () =>{
                 const data = await response.json();
                 localStorage.setItem('token', data.token);
                 localStorage.setItem('userRole', data.role);
-                alert("user is logged in");
-                navigate("/homepage");
+                localStorage.setItem('isLogged', true);
+
+                navigate("/");
             }else{
                 setLoginStatus(await response.text());
             }
@@ -46,6 +48,7 @@ export const Login = () =>{
 
     return(
         <div>
+            <Navbar/>
             <h1> Login </h1>
             <form className="loginForm" onSubmit={handleSubmit}>
                 <label> Email: </label>
