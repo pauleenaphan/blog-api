@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Navbar } from "../components/nav";
 
 export const CreateAccount = () =>{
     const navigate = useNavigate(); 
@@ -52,6 +53,7 @@ export const CreateAccount = () =>{
 
     return(
         <div>
+            <Navbar/>
             <h1> Signup </h1>
             <form className="loginForm" onSubmit={handleSubmit}>
                 <label> Email: </label>
