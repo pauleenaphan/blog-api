@@ -42,7 +42,6 @@ exports.addComment = async(req, res) =>{
 exports.viewComments = async (req, res) => {
     try {
         const postId = req.params.postId;
-        console.log("Postid", postId);
 
         //Find comments for the specific post
         //cant just pass in req.params because it is an object
@@ -60,6 +59,7 @@ exports.viewComments = async (req, res) => {
         res.status(500).send("Server Error");
     }
 }
+
 exports.deleteComments = async (req, res) => {
     try {
         const user = req.user;
