@@ -10,14 +10,12 @@ const LocalStrategy = require("passport-local").Strategy;
 const session = require('express-session');
 const passport = require('passport');
 const bcrypt = require('bcryptjs');
+const cors = require('cors');
 
 //!routes from other files
 const authRouter = require('./routes/auth');
 const postRouter = require("./routes/post");
 const commentRouter = require("./routes/comment");
-
-//!middleware
-const { authenticateJWT, checkAdmin } = require('./middleware/auth');
 
 var app = express();
 
@@ -27,6 +25,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(cors({ 
+    origin: 'http://localhost:3000',
+    methods: 'GET,POST,PUT,DELETE',
+    allowedHeaders: 'Content-Type,Authorization'
+}));
+
+
 // secret key used to sign the session ID cookies
 app.use(session({ secret: "cats", resave: false, saveUninitialized: false }));
 
@@ -34,9 +39,10 @@ app.use(passport.initialize()); // Initialize Passport
 app.use(passport.session()); // Restore session data from the cookie
 
 //routes
+//putting other functions in the parameters will apply it globally to all of the routes
 app.use('/auth', authRouter);
-app.use("/post", authenticateJWT, checkAdmin, postRouter); 
-app.use("/comment", authenticateJWT, checkAdmin, commentRouter);
+app.use("/post", postRouter); 
+app.use("/comment", commentRouter);
 
 // Error handler for 404
 app.use((req, res, next) => {
