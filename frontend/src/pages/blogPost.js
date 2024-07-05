@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { Navbar } from "../components/nav";
 
 //shows the blog post that the user clicked on
 export const BlogPost = () =>{
@@ -14,6 +15,8 @@ export const BlogPost = () =>{
     const [comments, setComments] = useState([]);
     const [userComment, setUserComment] = useState("");
     const userRole = localStorage.getItem("userRole");
+    const token = localStorage.getItem("token");
+    const isLogged = localStorage.getItem("isLogged");
 
     const getPost = async() =>{
         try{
@@ -62,13 +65,12 @@ export const BlogPost = () =>{
     };
 
     const addComment = async () =>{
-        console.log(userComment);
         try{
             const response = await fetch(`http://localhost:3001/comment/addcomment/${postId}`,{
                 method: "POST",
                 headers:{
                     "Content-Type": "application/json",
-                    "Authorization": `Bearer ${localStorage.getItem("token")}`
+                    "Authorization": `Bearer ${token}`
                 },
                 body: JSON.stringify({ content: userComment }),
             })
@@ -82,8 +84,22 @@ export const BlogPost = () =>{
         }
     }
 
-    const removeComment = async () =>{
-        
+    const removeComment = async (commentId) =>{
+        try{
+            const response = await fetch(`http://localhost:3001/comment/deletecomment/${commentId}`,{
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+                },
+            })
+            if(response.ok){
+                alert("comment was deleted");
+                getComments();
+            }
+        }catch(error){
+            console.error("Error Deleting comment")
+        }
     }
 
     useEffect(() =>{
@@ -93,29 +109,34 @@ export const BlogPost = () =>{
     
     return(
         <div>
+            <Navbar/>
             <div className="postContainer">
                 <h1> {post.title} </h1>
                 <p> Published: {post.published} </p>
                 <p> By: {post.author} </p>
                 <p> Readtime: {post.readTime} </p>
-                <p> {post.content} </p>
+                <p  style={{ whiteSpace: 'pre-line' }}> {post.content} </p>
             </div>
             
             <h2> Comments </h2>
-            <input 
-                type="text"
-                placeholder="Type your comment"
-                value={userComment}
-                onChange={(e) => setUserComment(e.target.value)}
-                ></input>
-            <button onClick={addComment}> Submit </button>
+            {isLogged === "true" ? (
+                <>
+                    <textarea
+                        type="text"
+                        placeholder="Type your comment"
+                        value={userComment}
+                        onChange={(e) => setUserComment(e.target.value)}
+                    />
+                    <button onClick={addComment}> Submit </button>
+                </>
+            ) : (
+                <p> Login or signup to make a comment </p>
+            )}
             {comments.map(comment =>(
                 <div key={comment._id}>
-                    <p> 
-                        {comment.author} {userRole === 'admin' ? ' - Author' : ''}
-                        </p>
+                    <p> {comment.author} </p>
                     <p> {comment.date} </p>
-                    <p> {comment.content} </p>
+                    <p style={{ whiteSpace: 'pre-line' }}> {comment.content} </p>
                     {userRole === 'admin' && (
                         <button onClick={() => removeComment(comment._id)}> Remove Comment </button>
                     )}
