@@ -2,11 +2,26 @@ const Post = require("../models/post");
 const User = require("../models/user");
 const Comment = require('../models/comment');
 
+function getFormattedDate(date) {
+    return date.toLocaleDateString('en-US', {
+        month: 'long',
+        day: 'numeric',
+        year: 'numeric'
+    });
+}
+
 //gets all blog post
 exports.getPosts = async (req, res) =>{
     try {
         const posts = await Post.find().populate('author', 'username');
-        res.json(posts);
+
+        const formattedPosts = posts.map(post => ({
+            ...post._doc,
+            published: getFormattedDate(post.published) // Format the published date
+        }));
+
+        // Send the formatted posts
+        res.json(formattedPosts);
     } catch (error) {
         console.error('Error fetching posts:', error);
         res.status(500).send('Server error');
@@ -25,7 +40,12 @@ exports.getPostById = async (req, res) => {
             return res.status(404).send('Post not found');
         }
 
-        res.status(200).json(post);
+        const formattedPost = {
+            ...post._doc, // Spread the original post document
+            published: getFormattedDate(post.published) // Format the published date
+        };
+
+        res.status(200).json(formattedPost);
     }catch(error){
         console.error("Error fetching post: ", error);
         res.status(500).send('Server error');
@@ -42,11 +62,12 @@ exports.createPost = async (req, res) => {
             return res.status(403).send('Forbidden: Only admins can create posts');
         }
 
-        const { title, content, readTime } = req.body;
+        const { title, content, description, readTime } = req.body;
 
         const newPost = new Post({
             title,
             content,
+            description,
             published: new Date(),
             author: user.username, // Use the username from the authenticated user
             readTime
@@ -68,11 +89,11 @@ exports.editPost = async (req, res) =>{
             return res.status(403).send('Forbidden: Only admins can create posts');
         }
 
-        const { title, content, readTime } = req.body;
+        const { title, content, description, readTime } = req.body;
 
         const updatedPost = await Post.findByIdAndUpdate(
             req.params.id,
-            { title, content, readTime },
+            { title, content, description, readTime },
             { new: true, runValidators: true } // Options: return the updated document and run validators
         );
 

@@ -2,6 +2,14 @@ const Post = require("../models/post");
 const User = require("../models/user");
 const Comment = require('../models/comment');
 
+function getFormattedDate(date) {
+    return date.toLocaleDateString('en-US', {
+        month: 'long',
+        day: 'numeric',
+        year: 'numeric'
+    });
+}
+
 exports.addComment = async(req, res) =>{
     try{
         //checks if user is logged in
@@ -16,10 +24,15 @@ exports.addComment = async(req, res) =>{
             return res.status(404).send('Not Found: Post does not exist');
         }
 
+        let author = req.user.username;
+        if(req.user.role === "admin"){
+            author += " - Author";
+        }
+
         //Create a new comment
         const newComment = new Comment({
             content,
-            author: req.user.username, 
+            author: author, 
             post: post,
             date: new Date()
         });
@@ -53,7 +66,12 @@ exports.viewComments = async (req, res) => {
             return res.status(404).send('No comments found for this post');
         }
 
-        res.json(comments);
+        const formattedComments = comments.map(comment => ({
+            ...comment._doc,
+            date: getFormattedDate(comment.date) // Format date here
+        }));
+
+        res.json(formattedComments);
     } catch (error) {
         console.error("Error fetching comments: ", error);
         res.status(500).send("Server Error");
