@@ -1,0 +1,79 @@
+/* blog post  */
+.blogPostContainer{
+    /* background-color: yellow; */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 100px 30%;
+}
+
+.blogPostContainer h1{
+    font-size: 40px;
+}
+
+.capContainer{
+    padding-bottom: 10px;
+    font-size: 13px;
+}
+
+.postAuthorDate{
+    text-transform: uppercase;
+}
+
+.postContent, .commentContent{
+    white-space: pre-line;
+}
+
+/* comments */
+.commentsContainer{
+    background-color: rgb(252, 240, 247);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px 30%;
+}
+
+.commentsContainer h2{
+    font-size: 30px;
+}
+
+.commentsContainer textarea{
+    height: 100px;
+    overflow-y: auto;
+    resize: none;
+    padding: 10px;
+    font-size: 18px;
+}
+
+.btnClass{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.commentsContainer .subbtn{
+    background-color: white;
+    width: 15%;
+    font-size: 16px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: solid 1px;
+}
+
+.commentsContainer .subbtn:hover{
+    background-color: pink;
+}
+
+.userCommentsContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.commentAuthor{
+    font-size: 20px;
+    text-transform: capitalize;
+}
+
+.commentDate{
+    font-size: 13px;
+}
