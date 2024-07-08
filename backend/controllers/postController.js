@@ -66,8 +66,8 @@ exports.createPost = async (req, res) => {
 
         const newPost = new Post({
             title,
-            content,
             description,
+            content,
             published: new Date(),
             author: user.username, // Use the username from the authenticated user
             readTime
@@ -89,11 +89,11 @@ exports.editPost = async (req, res) =>{
             return res.status(403).send('Forbidden: Only admins can create posts');
         }
 
-        const { title, content, description, readTime } = req.body;
+        const { title, description, content, readTime } = req.body;
 
         const updatedPost = await Post.findByIdAndUpdate(
             req.params.id,
-            { title, content, description, readTime },
+            { title, description, content , readTime },
             { new: true, runValidators: true } // Options: return the updated document and run validators
         );
 
