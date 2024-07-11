@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Navbar } from "../components/nav";
+import "../styles/post.css"
 
 import "../styles/post.css"
 
@@ -9,6 +10,7 @@ export const BlogPost = () =>{
     const { postId } = useParams();
     const [post, setPost] = useState({
         title: "",
+        description: "",
         content: "",
         published: "",
         author: "",
@@ -115,37 +117,51 @@ export const BlogPost = () =>{
             <Navbar/>
             <div className="blogPostContainer">
                 <h1> {post.title} </h1>
-                <p> Published: {post.published} </p>
-                <p> By: {post.author} </p>
-                <p> Readtime: {post.readTime} </p>
-                <p  style={{ whiteSpace: 'pre-line' }}> {post.content} </p>
+                <p> {post.description} </p>
+                <div className="capContainer">
+                    <p className="postAuthorDate"> By: {post.author} | {post.published} </p>
+                    <p><i>{post.readTime} min read</i></p>
+                </div>
+                <hr></hr>
+                <p className="postContent"> {post.content} </p>
             </div>
             
-            <h2> Comments </h2>
-            {isLogged === "true" ? (
-                <>
-                    <textarea
-                        type="text"
-                        placeholder="Type your comment"
-                        value={userComment}
-                        onChange={(e) => setUserComment(e.target.value)}
-                    />
-                    <button onClick={addComment}> Submit </button>
-                </>
-            ) : (
-                <p> Login or signup to make a comment </p>
-            )}
-            {comments.map(comment =>(
-                <div key={comment._id}>
-                    <p> {comment.author} </p>
-                    <p> {comment.date} </p>
-                    <p style={{ whiteSpace: 'pre-line' }}> {comment.content} </p>
-                    {userRole === 'admin' && (
-                        <button onClick={() => removeComment(comment._id)}> Remove Comment </button>
-                    )}
-                </div>
-            ))}
+            <div className="commentsContainer">
+                <h2> Comments </h2>
+                {isLogged === "true" ? (
+                    <>
+                        <textarea
+                            type="text"
+                            placeholder="Type your comment"
+                            value={userComment}
+                            onChange={(e) => setUserComment(e.target.value)}
+                        />
+                        <div className="btnClass">
+                            <button onClick={addComment} className="subbtn"> Submit </button>
+                        </div>
+                        
+                    </>
+                ) : (
+                    <p> Login or signup to make a comment </p>
+                )}
+                {comments.map(comment =>(
+                    <div key={comment._id} className="userCommentsContainer">
+                        <hr></hr>
+                        <div className="commentHeadCaption">
+                            <p className="commentAuthor"> {comment.author} </p>
+                            <p className="commentDate"> Commented: {comment.date} </p>
+                        </div>
+                        <p className="commentContent"> {comment.content} </p>
+                        <div className="btnClass">
+                            {userRole === 'admin' && (
+                                <button onClick={() => removeComment(comment._id)} className="removePostBtn"> Remove Comment </button>
+                            )}
+                        </div>
+                        
+                    </div>
+                ))}
+            </div>
+            
         </div>
-        
     )
 }
