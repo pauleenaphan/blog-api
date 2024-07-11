@@ -4,6 +4,8 @@ import { Navbar } from "../components/nav";
 
 import "../styles/login.css";
 
+const api = "https://blogg-api.glitch.me";
+
 export const Login = () =>{
     const navigate = useNavigate(); 
     const [userData, setUserData] = useState({
@@ -25,7 +27,7 @@ export const Login = () =>{
         const { email, password } = userData;
 
         try{
-            const response = await fetch("http://localhost:3001/auth/login",{
+            const response = await fetch(`${api}/auth/login`,{
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

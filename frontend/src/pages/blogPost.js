@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Navbar } from "../components/nav";
-import "../styles/post.css"
+import "../styles/post.css";
 
-import "../styles/post.css"
+const api = "https://blogg-api.glitch.me";
 
 //shows the blog post that the user clicked on
 export const BlogPost = () =>{
@@ -24,7 +24,7 @@ export const BlogPost = () =>{
 
     const getPost = async() =>{
         try{
-            const response = await fetch(`http://localhost:3001/post/getpost/${postId}`,{
+            const response = await fetch(`${api}/post/getpost/${postId}`,{
                 method: "GET",
                 headers:{
                     "Content-Type": "application/json"
@@ -47,7 +47,7 @@ export const BlogPost = () =>{
 
     const getComments = async () => {
         try {
-            const response = await fetch(`http://localhost:3001/comment/viewcomments/${postId}`, {
+            const response = await fetch(`${api}/comment/viewcomments/${postId}`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json"
@@ -71,7 +71,7 @@ export const BlogPost = () =>{
 
     const addComment = async () =>{
         try{
-            const response = await fetch(`http://localhost:3001/comment/addcomment/${postId}`,{
+            const response = await fetch(`${api}/comment/addcomment/${postId}`,{
                 method: "POST",
                 headers:{
                     "Content-Type": "application/json",
@@ -91,7 +91,7 @@ export const BlogPost = () =>{
 
     const removeComment = async (commentId) =>{
         try{
-            const response = await fetch(`http://localhost:3001/comment/deletecomment/${commentId}`,{
+            const response = await fetch(`${api}/comment/deletecomment/${commentId}`,{
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",

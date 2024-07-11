@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Navbar } from "../components/nav";
 
+const api = "https://blogg-api.glitch.me";
+
 export const CreateAccount = () =>{
     const navigate = useNavigate(); 
     const [userData, setUserData] = useState({
@@ -29,7 +31,7 @@ export const CreateAccount = () =>{
         }
 
         try{
-            const response = await fetch("http://localhost:3001/auth/signup", {
+            const response = await fetch(`${api}/auth/signup`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
