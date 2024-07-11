@@ -65,3 +65,63 @@
 .editPostBtn:hover{
     background-color: rgb(57, 120, 179);
 }
+
+/* new post modal */
+.postModal{
+    /* background-color: pink; */
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    padding-top: 30px;
+}
+
+.postModal h2{
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.postForm{
+    display: flex;
+    flex-direction: column;
+}
+
+.inputPostContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    margin: 10px;
+}
+
+.inputPostContainer label{
+    font-size: 20px;
+}
+
+.inputPostContainer input, .inputPostContainer textarea{
+    padding: 10px;
+    font-size: 18px;
+    border-radius: 10px;
+    border: solid 1px black;
+}
+
+.postDescription{
+    height: 50px;
+    overflow-y: auto;
+}
+
+.postContent{
+    height: 250px;
+    overflow-y: auto;
+}
+
+.postForm .newPostBtn, .postForm .editPostBtn{
+    margin: 10px auto;
+    width: 30%;
+}
+
+.postContainer .description{
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

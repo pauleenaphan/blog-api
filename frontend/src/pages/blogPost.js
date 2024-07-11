@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Navbar } from "../components/nav";
 
+import "../styles/post.css"
+
 //shows the blog post that the user clicked on
 export const BlogPost = () =>{
     const { postId } = useParams();
@@ -30,6 +32,7 @@ export const BlogPost = () =>{
             const data = await response.json();
             setPost({
                 title: data.title,
+                description: data.description,
                 content: data.content,
                 published: data.published,
                 author: data.author,
