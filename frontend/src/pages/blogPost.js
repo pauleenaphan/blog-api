@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { Navbar } from "../components/nav";
 import "../styles/post.css";
 
-const api = "https://blog-wog-api.glitch.me";
+const api = "https://blogg-wog-api.glitch.me";
 
 //shows the blog post that the user clicked on
 export const BlogPost = () =>{
