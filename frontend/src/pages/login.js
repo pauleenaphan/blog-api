@@ -32,6 +32,7 @@ export const Login = () =>{
                 headers: {
                     "Content-Type": "application/json",
                 },
+                mode: 'cors',
                 body: JSON.stringify({ email, password })
             });
 

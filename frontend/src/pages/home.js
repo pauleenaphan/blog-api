@@ -102,7 +102,8 @@ export const Homepage = () =>{
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": `Bearer ${token}`
-                }
+                },
+                mode: 'cors' 
             });
 
             if(response.ok){
@@ -125,6 +126,7 @@ export const Homepage = () =>{
                     "Content-Type": "application/json",
                     "Authorization": `Bearer ${token}`
                 },
+                mode: 'cors',
                 body: JSON.stringify({ title, description, content, readTime }) 
             });
 
@@ -149,6 +151,7 @@ export const Homepage = () =>{
                     "Content-Type": "application/json",
                     "Authorization": `Bearer ${token}`
                 },
+                mode: 'cors',
                 body: JSON.stringify({ title, content, description, readTime }),
             });
 
