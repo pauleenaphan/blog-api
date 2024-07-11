@@ -26,9 +26,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(cors({ 
-    origin: 'http://localhost:3000',
-    methods: 'GET,POST,PUT,DELETE,PATCH',
-    allowedHeaders: 'Content-Type,Authorization'
+    origin: /\.netlify\.app$/, 
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'], 
+    allowedHeaders: ['Content-Type', 'Authorization'], 
 }));
 
 
