@@ -26,7 +26,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(cors({ 
-    origin: "https://main--blogwog.netlify.app/", 
+    origin: "https://main--blogwog.netlify.app", 
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'], 
     allowedHeaders: ['Content-Type', 'Authorization'], 
 }));
