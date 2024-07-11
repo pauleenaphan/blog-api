@@ -4,7 +4,7 @@ import { Navbar } from "../components/nav";
 
 import "../styles/login.css";
 
-const api = "https://blog-wogg.glitch.me";
+const api = "https://blog-wog-api.glitch.me";
 
 export const Login = () =>{
     const navigate = useNavigate(); 

@@ -5,7 +5,7 @@ import Modal from "../components/modal";
 import { Navbar } from "../components/nav";
 import "../styles/home.css";
 
-const api = "https://blog-wogg.glitch.me";
+const api = "https://blog-wog-api.glitch.me";
 
 //show all blogs
 export const Homepage = () =>{

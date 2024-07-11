@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Navbar } from "../components/nav";
 
-const api = "https://blog-wogg.glitch.me";
+const api = "https://blog-wog-api.glitch.me";
 
 export const CreateAccount = () =>{
     const navigate = useNavigate(); 
