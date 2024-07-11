@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Navbar } from "../components/nav";
 
-const api = "https://blogg-wog-api.glitch.me";
+require('dotenv').config();
 
 export const CreateAccount = () =>{
     const navigate = useNavigate(); 
@@ -31,7 +31,7 @@ export const CreateAccount = () =>{
         }
 
         try{
-            const response = await fetch(`${api}/auth/signup`, {
+            const response = await fetch(`${process.env.apiURL}/auth/signup`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

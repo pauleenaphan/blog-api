@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 import Modal from "../components/modal";
 import { Navbar } from "../components/nav";
 import "../styles/home.css";
+require('dotenv').config();
 
-const api = "https://blogg-wog-api.glitch.me";
 
 //show all blogs
 export const Homepage = () =>{
@@ -48,7 +48,7 @@ export const Homepage = () =>{
 
     const getPost = async(postId) =>{
         try{
-            const response = await fetch(`${api}/post/getpost/${postId}`, {
+            const response = await fetch(`${process.env.apiURL}/post/getpost/${postId}`, {
                 method: "GET",
                 headers:{
                     "Content-Type": "application/json"
@@ -76,7 +76,7 @@ export const Homepage = () =>{
     //gets all the post on the homepage
     const fetchPost = async() =>{
         try{
-            const response = await fetch(`${api}/post/getallpost`, {
+            const response = await fetch(`${process.env.apiURL}/post/getallpost`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -97,7 +97,7 @@ export const Homepage = () =>{
 
     const removePost = async(postId) =>{
         try{
-            const response = await fetch(`${api}/post/deletepost/${postId}`, {
+            const response = await fetch(`${process.env.apiURL}/post/deletepost/${postId}`, {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",
@@ -120,7 +120,7 @@ export const Homepage = () =>{
         const { title, description, content, readTime } = editPostVal;
         console.log("curr post val ", editPostVal.currPost);
         try{
-            const response = await fetch(`${api}/post/editpost/${editPostVal.currPost}`, {
+            const response = await fetch(`${process.env.apiURL}/post/editpost/${editPostVal.currPost}`, {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",
@@ -145,7 +145,7 @@ export const Homepage = () =>{
         const { title, content, description, readTime } = newPost; 
 
         try{
-            const response = await fetch(`${api}/post/createpost`, {
+            const response = await fetch(`${process.env.apiURLs}/post/createpost`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

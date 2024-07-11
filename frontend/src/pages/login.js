@@ -4,7 +4,7 @@ import { Navbar } from "../components/nav";
 
 import "../styles/login.css";
 
-const api = "https://blogg-wog-api.glitch.me";
+require('dotenv').config();
 
 export const Login = () =>{
     const navigate = useNavigate(); 
@@ -27,7 +27,7 @@ export const Login = () =>{
         const { email, password } = userData;
 
         try{
-            const response = await fetch(`${api}/auth/login`,{
+            const response = await fetch(`${process.env.apiURL}/auth/login`,{
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
