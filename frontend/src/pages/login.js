@@ -4,8 +4,6 @@ import { Navbar } from "../components/nav";
 
 import "../styles/login.css";
 
-require('dotenv').config();
-
 export const Login = () =>{
     const navigate = useNavigate(); 
     const [userData, setUserData] = useState({
@@ -27,7 +25,7 @@ export const Login = () =>{
         const { email, password } = userData;
 
         try{
-            const response = await fetch(`${process.env.apiURL}/auth/login`,{
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/auth/login`,{
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

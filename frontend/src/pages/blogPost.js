@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Navbar } from "../components/nav";
 import "../styles/post.css";
-require('dotenv').config();
-
 
 //shows the blog post that the user clicked on
 export const BlogPost = () =>{
@@ -24,7 +22,7 @@ export const BlogPost = () =>{
 
     const getPost = async() =>{
         try{
-            const response = await fetch(`${process.env.apiURL}/post/getpost/${postId}`,{
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/post/getpost/${postId}`,{
                 method: "GET",
                 headers:{
                     "Content-Type": "application/json"
@@ -47,7 +45,7 @@ export const BlogPost = () =>{
 
     const getComments = async () => {
         try {
-            const response = await fetch(`${process.env.apiURL}/comment/viewcomments/${postId}`, {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/comment/viewcomments/${postId}`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json"
@@ -71,7 +69,7 @@ export const BlogPost = () =>{
 
     const addComment = async () =>{
         try{
-            const response = await fetch(`${process.env.apiURL}/comment/addcomment/${postId}`,{
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/comment/addcomment/${postId}`,{
                 method: "POST",
                 headers:{
                     "Content-Type": "application/json",
@@ -91,7 +89,7 @@ export const BlogPost = () =>{
 
     const removeComment = async (commentId) =>{
         try{
-            const response = await fetch(`${process.env.apiURL}/comment/deletecomment/${commentId}`,{
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/comment/deletecomment/${commentId}`,{
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",

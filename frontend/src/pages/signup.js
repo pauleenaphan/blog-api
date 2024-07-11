@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Navbar } from "../components/nav";
 
-require('dotenv').config();
-
 export const CreateAccount = () =>{
     const navigate = useNavigate(); 
     const [userData, setUserData] = useState({
@@ -31,7 +29,7 @@ export const CreateAccount = () =>{
         }
 
         try{
-            const response = await fetch(`${process.env.apiURL}/auth/signup`, {
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/auth/signup`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
