@@ -68,7 +68,6 @@
 
 /* new post modal */
 .postModal{
-    /* background-color: pink; */
     height: 80vh;
     display: flex;
     flex-direction: column;
@@ -108,8 +107,8 @@
     overflow-y: auto;
 }
 
-.postContent{
-    height: 250px;
+.inputPostContainer .postContent{
+    height: 150px;
     overflow-y: auto;
 }
 
@@ -124,4 +123,5 @@
     -webkit-line-clamp: 2;
     overflow: hidden;
     text-overflow: ellipsis;
+    padding-bottom: 20px;
 }

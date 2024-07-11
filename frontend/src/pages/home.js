@@ -169,7 +169,7 @@ export const Homepage = () =>{
                             <label> Title </label>
                             <input 
                                 type="text" 
-                                placeholder="title" 
+                                placeholder="Title" 
                                 onChange={(e) => updateNewPost("title", e.target.value)}
                                 required={true}
                             />
@@ -178,7 +178,7 @@ export const Homepage = () =>{
                             <label> Description </label>
                             <textarea
                                 className="postDescription"
-                                placeholder="description"
+                                placeholder="2-3 Short sentences about the blog"
                                 onChange={(e) => updateNewPost("description", e.target.value)}
                                 required={true}
                             />
@@ -187,7 +187,7 @@ export const Homepage = () =>{
                             <label> Content </label>
                             <textarea
                                 className="postContent"
-                                placeholder="content"
+                                placeholder="Your blog content"
                                 onChange={(e) => updateNewPost("content", e.target.value)}
                                 required={true}
                             />
