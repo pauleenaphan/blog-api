@@ -53,6 +53,7 @@ export const Homepage = () =>{
                 headers:{
                     "Content-Type": "application/json"
                 },
+                mode: 'cors' 
             });
 
             const data = await response.json();
@@ -76,6 +77,7 @@ export const Homepage = () =>{
                 headers: {
                     "Content-Type": "application/json",
                 },
+                mode: 'cors' 
             });
     
             const data = await response.json();
