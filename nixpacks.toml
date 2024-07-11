@@ -1,0 +1,9 @@
+[phases]
+  [phases.setup]
+    commands = ["cd backend && npm install"]
+
+  [phases.build]
+    commands = []
+
+  [phases.start]
+    commands = ["cd backend && npm start"]
