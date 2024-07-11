@@ -56,6 +56,10 @@ export const Homepage = () =>{
                 mode: 'cors' 
             });
 
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}, Message: ${await response.text()}`);
+            }    
+
             const data = await response.json();
             setEditPostVal({
                 currPost: postId,
@@ -79,6 +83,10 @@ export const Homepage = () =>{
                 },
                 mode: 'cors' 
             });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}, Message: ${await response.text()}`);
+            }    
     
             const data = await response.json();
             setPosts(data);
