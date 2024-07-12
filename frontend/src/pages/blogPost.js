@@ -42,7 +42,7 @@ export const BlogPost = () =>{
         }catch(error){
             console.error("Error getting specific blog post", error);
         }
-    }, []);
+    }, [postId]);
     
 
     const getComments = useCallback(async () => {
@@ -67,7 +67,7 @@ export const BlogPost = () =>{
         } catch (error) {
             console.error("Error getting comments", error);
         }
-    }, []);
+    }, [postId]);
 
     const addComment = async () =>{
         try{
