@@ -108,7 +108,7 @@ export const BlogPost = () =>{
     useEffect(() =>{
         getPost();
         getComments();
-    })
+    }, [])
     
     return(
         <div>
