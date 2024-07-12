@@ -25,7 +25,7 @@ export const Login = () =>{
         const { email, password } = userData;
 
         try{
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/auth/login`,{
+            const response = await fetch(`https://backend-spring-butterfly-6204.fly.dev/auth/login`,{
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

@@ -46,7 +46,7 @@ export const Homepage = () =>{
 
     const getPost = async(postId) =>{
         try{
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/post/getpost/${postId}`, {
+            const response = await fetch(`https://backend-spring-butterfly-6204.fly.dev/post/getpost/${postId}`, {
                 method: "GET",
                 headers:{
                     "Content-Type": "application/json"
@@ -96,7 +96,7 @@ export const Homepage = () =>{
 
     const removePost = async(postId) =>{
         try{
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/post/deletepost/${postId}`, {
+            const response = await fetch(`https://backend-spring-butterfly-6204.fly.dev/post/deletepost/${postId}`, {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",
