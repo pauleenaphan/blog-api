@@ -23,7 +23,7 @@ export const BlogPost = () =>{
 
     const getPost = useCallback(async() =>{
         try{
-            const response = await fetch(`https://backend-spring-butterfly-6204.fly.devpost/getpost/${postId}`,{
+            const response = await fetch(`https://backend-spring-butterfly-6204.fly.dev/post/getpost/${postId}`,{
                 method: "GET",
                 headers:{
                     "Content-Type": "application/json"
@@ -39,6 +39,7 @@ export const BlogPost = () =>{
                 author: data.author,
                 readTime: data.readTime
             })
+            console.log(data.title);
         }catch(error){
             console.error("Error getting specific blog post", error);
         }
