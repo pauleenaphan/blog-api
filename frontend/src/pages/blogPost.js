@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Navbar } from "../components/nav";
 import "../styles/post.css";
@@ -20,7 +20,8 @@ export const BlogPost = () =>{
     const token = localStorage.getItem("token");
     const isLogged = localStorage.getItem("isLogged");
 
-    const getPost = async() =>{
+
+    const getPost = useCallback(async() =>{
         try{
             const response = await fetch(`https://backend-spring-butterfly-6204.fly.devpost/getpost/${postId}`,{
                 method: "GET",
@@ -41,9 +42,10 @@ export const BlogPost = () =>{
         }catch(error){
             console.error("Error getting specific blog post", error);
         }
-    }
+    }, []);
+    
 
-    const getComments = async () => {
+    const getComments = useCallback(async () => {
         try {
             const response = await fetch(`https://backend-spring-butterfly-6204.fly.dev/comment/viewcomments/${postId}`, {
                 method: "GET",
@@ -65,7 +67,7 @@ export const BlogPost = () =>{
         } catch (error) {
             console.error("Error getting comments", error);
         }
-    };
+    }, []);
 
     const addComment = async () =>{
         try{
