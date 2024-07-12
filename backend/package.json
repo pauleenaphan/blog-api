@@ -27,6 +27,7 @@
     "passport-local": "^1.0.0"
   },
   "devDependencies": {
+    "@flydotio/dockerfile": "^0.5.7",
     "nodemon": "^2.0.15"
   },
   "engines": {
