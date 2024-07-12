@@ -22,7 +22,7 @@ export const BlogPost = () =>{
 
     const getPost = async() =>{
         try{
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/post/getpost/${postId}`,{
+            const response = await fetch(`https://backend-spring-butterfly-6204.fly.devpost/getpost/${postId}`,{
                 method: "GET",
                 headers:{
                     "Content-Type": "application/json"
@@ -45,7 +45,7 @@ export const BlogPost = () =>{
 
     const getComments = async () => {
         try {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/comment/viewcomments/${postId}`, {
+            const response = await fetch(`https://backend-spring-butterfly-6204.fly.dev/comment/viewcomments/${postId}`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json"
@@ -69,7 +69,7 @@ export const BlogPost = () =>{
 
     const addComment = async () =>{
         try{
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/comment/addcomment/${postId}`,{
+            const response = await fetch(`https://backend-spring-butterfly-6204.fly.dev/comment/addcomment/${postId}`,{
                 method: "POST",
                 headers:{
                     "Content-Type": "application/json",
@@ -89,7 +89,7 @@ export const BlogPost = () =>{
 
     const removeComment = async (commentId) =>{
         try{
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/comment/deletecomment/${commentId}`,{
+            const response = await fetch(`https://backend-spring-butterfly-6204.fly.dev/comment/deletecomment/${commentId}`,{
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",

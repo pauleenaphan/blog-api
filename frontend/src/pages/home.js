@@ -75,7 +75,7 @@ export const Homepage = () =>{
     const fetchPost = async() =>{
         console.log("url ", process.env.REACT_APP_API_URL);
         try{
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/post/getallpost`, {
+            const response = await fetch(`https://backend-spring-butterfly-6204.fly.dev/post/getallpost`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -119,7 +119,7 @@ export const Homepage = () =>{
         const { title, description, content, readTime } = editPostVal;
         console.log("curr post val ", editPostVal.currPost);
         try{
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/post/editpost/${editPostVal.currPost}`, {
+            const response = await fetch(`https://backend-spring-butterfly-6204.fly.dev/post/editpost/${editPostVal.currPost}`, {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",
@@ -144,7 +144,7 @@ export const Homepage = () =>{
         const { title, content, description, readTime } = newPost; 
 
         try{
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/post/createpost`, {
+            const response = await fetch(`https://backend-spring-butterfly-6204.fly.dev/post/createpost`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
