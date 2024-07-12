@@ -73,6 +73,7 @@ export const Homepage = () =>{
 
     //gets all the post on the homepage
     const fetchPost = async() =>{
+        console.log("url ", process.env.REACT_APP_API_URL);
         try{
             const response = await fetch(`${process.env.REACT_APP_API_URL}/post/getallpost`, {
                 method: "GET",
